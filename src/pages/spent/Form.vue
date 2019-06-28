@@ -2,26 +2,27 @@
 
 <template>
     <div class="card">
-        <form action="">
+        <form @submit="salvar">
             <div class="modal-card" style="width: auto">
                 <header class="modal-card-head">
                     <p class="modal-card-title">Formulário - Animal</p>
                 </header>
                 <section class="modal-card-body">
 
-                    <b-field label="Teste">
+                    <b-field label="Motivo">
                         <b-input
-                                v-mask = "'## / ## / ####'"
-                                v-model="objeto"
-                                name="diasVisibilidade"
-                                data-vv-as="diasVisibilidade"/>
+                                v-model="objeto.motivo"
+                                name="motivo"
+                                data-vv-as="Motivo"
+                                v-validate="'required'"/>
                     </b-field>
 
-                    <b-field label="Teste">
+                    <b-field label="Motivo">
                         <b-input
-                                v-model="objeto"
-                                name="diasVisibilidade"
-                                data-vv-as="diasVisibilidade"/>
+                                v-model="objeto.pago"
+                                name="motivo"
+                                data-vv-as="Motivo"
+                                v-validate="'required'"/>
                     </b-field>
                 </section>
                 <footer class="modal-card-foot">
@@ -35,9 +36,8 @@
 
 
 <script>
-    import {mask} from 'vue-the-mask'
+    import Constante from '../../constante'
 
     export default {
-        directives: {mask}
     }
 </script>

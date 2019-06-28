@@ -85,8 +85,8 @@ export default {
     listaGastoUnico:() => {
         return http.get('/gasto')
     },
-    salvaGasto:() => {
-        return http.post('/gasto')
+    salvaGasto:(gasto) => {
+        return http.post('/gasto', gasto)
     },
     deletaGasto:() => {
         return http.delete('/gasto')

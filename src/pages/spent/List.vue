@@ -82,11 +82,11 @@
                 </b-table-column>
 
                 <b-table-column field="pago" label="Pago" sortable>
-                    {{ props.row.pago }}
+                    {{ props.row.pago ? "Sim" : "Não" }}
                 </b-table-column>
 
                 <b-table-column field="necessario" label="Necessário" sortable>
-                    {{ props.row.necessario }}
+                    {{ props.row.necessario ? "Sim" : "Não" }}
                 </b-table-column>
 
                 <b-table-column label="">
@@ -105,7 +105,7 @@
     export default {
         created() {
             this.listarGastos()
-            this.countPagos()
+            this.listarResumo()
         },
         data() {
             return {
@@ -119,7 +119,6 @@
             listarGastos() {
                 Constante.listaGasto().then(res => {
                     this.gastos = res.data
-                    console.log(this.gastos)
                 })
             },
             atualizaGasto(parametro) {
@@ -129,13 +128,13 @@
                     canCancel: true,
                     props: {parametro}
                 }).$on('close')
+                console.log(parametro)
             },
-            countPagos() {
+            listarResumo() {
                 Constante.listaGastoResumo().then(res => {
                     this.gastosResumo = res.data
-                    console.log(this.gastosResumo)
                 })
-            },
+            }
         }
     }
 </script>
