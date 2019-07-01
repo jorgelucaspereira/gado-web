@@ -32,7 +32,7 @@
                 <article class="tile is-child box">
                     <p class="title">Qtd. Pagos</p>
                     <p class="subtitle">
-                        - {{ this.gastosResumo.qtdGastosPagos < 10 ? '0' + this.gastosResumo.qtdGastosPagos
+                        {{ this.gastosResumo.qtdGastosPagos < 10 ? '0' + this.gastosResumo.qtdGastosPagos
                         : this.gastosResumo.qtdGastosPagos }}
                         / {{ this.gastos.length < 10 ? '0' + this.gastos.length : this.gastos.length }}</p>
                 </article>
@@ -52,7 +52,9 @@
                 </article>
             </div>
         </div>
-
+        <header class="modal-card-head">
+            <h1><p class="modal-card-title">Gastos</p></h1>
+        </header>
         <b-table
                 hoverable
                 paginated
@@ -89,10 +91,6 @@
                     {{ props.row.necessario ? "Sim" : "Não" }}
                 </b-table-column>
 
-                <b-table-column label="">
-                    <b-button size="is-small" icon="pencil-alt" @click="atualizaGasto(props.row)"/>
-
-                </b-table-column>
             </template>
         </b-table>
     </section>
