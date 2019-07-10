@@ -46,11 +46,14 @@ export default {
     listaEntradas:() => {
         return http.get('/entradas')
     },
+    listaResumoEntradas:() => {
+        return http.get('/entradas/resumo')
+    },
     listaEntradaUnica:() => {
         return http.get('/entrada')
     },
-    salvaEntrada:() => {
-        return http.post('/entrada')
+    salvaEntrada:(entrada) => {
+        return http.post('/entrada', entrada)
     },
     deletaEntrada:() => {
         return http.delete('/entrada')
@@ -79,6 +82,9 @@ export default {
 
 // Gastos
 
+    listaSaidasPorGasto:() => {
+        return http.get('//saidas-por-gasto')
+    },
     listaGasto:() => {
         return http.get('/gastos')
     },
@@ -175,11 +181,14 @@ export default {
     listaSaidas:() => {
         return http.get('/saidas')
     },
+    listaResumoSaidas:() => {
+        return http.get('/saidas/resumo')
+    },
     listaSaidaUnica:() => {
         return http.get('/saida')
     },
-    salvaSaida:() => {
-        return http.post('/saida')
+    salvaSaida:(saida) => {
+        return http.post('/saida', saida)
     },
     deletaSaida:() => {
         return http.delete('/saida')

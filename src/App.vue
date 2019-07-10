@@ -2,7 +2,7 @@
     // Import Bulma's core
     @import "~bulma/sass/utilities/_all";
 
-    $primary: #FAFAFA;
+    $primary: #209CEE;
     $primary-invert: findColorInvert($primary);
 
     // Setup $colors to use as bulma classes

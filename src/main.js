@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Buefy from 'buefy'
+import money from 'v-money'
 import VueCurrencyFilter from 'vue-currency-filter'
 import VueTheMask from 'vue-the-mask'
 import 'bulma/css/bulma.css'
@@ -12,6 +13,7 @@ Vue.config.productionTip = false
 
 Vue.use(Buefy, {defaultIconPack: 'fas'})
 Vue.use(VueTheMask)
+Vue.use(money, {decimal: ',', thousands: '.', precision: 2, masked: false})
 Vue.use(require('vue-moment'))
 Vue.use(VueCurrencyFilter,
     {

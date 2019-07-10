@@ -3,34 +3,9 @@
 <template>
     <section class="container">
         <div class="tile is-ancestor">
-            <!--<div class="tile is-parent">-->
-                <!--<article class="tile is-child box">-->
-                    <!--<p class="title">Total Gasto</p>-->
-                    <!--<p class="subtitle"><b>R$: </b>{{ gastosResumo.totalGasto }}</p>-->
-                <!--</article>-->
-            <!--</div>-->
-
-            <!--<div class="tile is-parent">-->
-                <!--<article class="tile is-child box">-->
-                    <!--<p class="title">Count Gastos</p>-->
-                    <!--<p class="subtitle">-->
-                        <!-- - {{ this.gastos.length < 10 ? '0' + this.gastos.length : this.gastos.length }}</p>-->
-                <!--</article>-->
-            <!--</div>-->
-
-            <!--<div class="tile is-parent">-->
-                <!--<article class="tile is-child box">-->
-                    <!--<p class="title">Count Necessários</p>-->
-                    <!--<p class="subtitle">-->
-                        <!-- - {{ this.gastosResumo.qtdGastosNecessarios < 10 ? '0' + this.gastosResumo.qtdGastosNecessarios-->
-                        <!--: this.gastosResumo.qtdGastosNecessarios }}-->
-                        <!--/ {{ this.gastos.length < 10 ? '0' + this.gastos.length : this.gastos.length }}</p>-->
-                <!--</article>-->
-            <!--</div>-->
-
             <div class="tile is-parent">
                 <article class="tile is-child box">
-                    <p class="title">Qtd. Pagos</p>
+                    <p class="title">Qtd. Pago</p>
                     <p class="subtitle">
                         {{ this.gastosResumo.qtdGastosPagos < 10 ? '0' + this.gastosResumo.qtdGastosPagos
                         : this.gastosResumo.qtdGastosPagos }}
@@ -52,17 +27,24 @@
                 </article>
             </div>
         </div>
-        <header class="modal-card-head">
-            <h1><p class="modal-card-title">Gastos</p></h1>
-        </header>
-        <b-table
-                hoverable
-                paginated
-                :per-page="porPag"
-                class="row-click"
-                :data="gastos">
+        <div style="width: auto">
+            <header class="modal-card-head">
+                <p class="modal-card-title"><b>Lista de Gastos</b></p>
+                <b-button rounded
+                          size="is-medium"
+                          icon-left="plus"
+                          @click="formGasto">
+                    Adicionar Gasto
+                </b-button>
+            </header>
+        </div>
+        <b-table hoverable
+                 paginated
+                 :per-page="porPag"
+                 class="row-click"
+                 :data="gastos">
             <template slot-scope="props">
-                <b-table-column label="#">
+                <b-table-column label="#" sortable>
                     <small>{{ props.index + 1 }}</small>
                     .
                 </b-table-column>
@@ -90,15 +72,14 @@
                 <b-table-column field="necessario" label="Necessário" sortable>
                     {{ props.row.necessario ? "Sim" : "Não" }}
                 </b-table-column>
-
             </template>
         </b-table>
     </section>
 </template>
 
 <script>
-    import Constante from '../../constante'
-    import Form from './Form'
+    import Constante from '../../../constante'
+    import Form from '../spent/Form'
 
     export default {
         created() {
@@ -119,18 +100,20 @@
                     this.gastos = res.data
                 })
             },
-            atualizaGasto(parametro) {
-                this.$modal.open({
-                    component: Form,
-                    width: 400,
-                    canCancel: true,
-                    props: {parametro}
-                }).$on('close')
-                console.log(parametro)
-            },
             listarResumo() {
                 Constante.listaGastoResumo().then(res => {
                     this.gastosResumo = res.data
+                })
+            },
+            formGasto() {
+                this.$modal.open({
+                    component: Form,
+                    width: 600,
+                    canCancel: true,
+                }).$on('close', () => {
+                    this.listarGastos()
+                    this.listarResumo()
+                    this.$emit('atualizar')
                 })
             }
         }
