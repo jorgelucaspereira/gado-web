@@ -82,7 +82,7 @@
             <template slot="detail" slot-scope="props">
                 <table :data="animais" class="table is-fullwidth m-t-sm">
                     <tr>
-     
+
                         <th>Valor Venda</th>
 
                         <th>Lote Compra</th>

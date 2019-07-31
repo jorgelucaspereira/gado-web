@@ -2,7 +2,7 @@
 
 <template>
     <div class="card">
-        <form @submit.prevent="salvaGasto">
+        <form @submit.stop.prevent="salvaGasto(id)">
             <div class="modal-card" style="width: auto">
                 <header class="modal-card-head">
                     <p class="modal-card-title">Formulário - Gasto</p>
@@ -20,7 +20,7 @@
 
                         <div class="column">
                             <b-field label="Valor">
-                                <money v-model="gasto.valor" class="input"/>
+                                <money v-model="gasto.valor" required class="input"/>
                             </b-field>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
             }
         },
         methods: {
-            salvaGasto() {
+            salvaGasto(id) {
                 Constante.salvaGasto(this.gasto).then(res => {
                     this.gasto = []
                     this.$emit('close')
@@ -83,6 +83,10 @@
                         message: this.errors,
                         type: 'is-danger'
                     })
+                })
+            },
+            deletaGasto() {
+                Constante.deletaGasto(objeto.id).then(res => {
                 })
             }
         }

@@ -13,7 +13,7 @@
         <b-tab-item>
             <template slot="header">
                 <b-icon id="margin-right" icon="horse-head" class="m-r-xs"/>
-                <span> Animais Tipos <b-tag rounded> {{ this.animaisTipos.length }} </b-tag> </span>
+                <span> Lista de Animais Tipos <b-tag rounded> {{ this.animaisTipos.length }} </b-tag> </span>
             </template>
             <animais-tipos @atualizar="listaAnimaisTipos()"></animais-tipos>
         </b-tab-item>
@@ -21,7 +21,7 @@
         <b-tab-item>
             <template slot="header">
                 <b-icon id="margin-right" icon="newspaper" class="m-r-xs"/>
-                <span> Lotes <b-tag rounded> {{ this.lotes.length }} </b-tag> </span>
+                <span> Lista de Lotes <b-tag rounded> {{ this.lotes.length }} </b-tag> </span>
             </template>
             <lotes @atualizar="listaLotes()"></lotes>
         </b-tab-item >

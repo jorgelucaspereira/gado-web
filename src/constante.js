@@ -94,8 +94,8 @@ export default {
     salvaGasto:(gasto) => {
         return http.post('/gasto', gasto)
     },
-    deletaGasto:() => {
-        return http.delete('/gasto')
+    deletaGasto:(gasto) => {
+        return http.delete('/gasto', gasto)
     },
     atualizaGasto:() => {
         return http.put('/gasto')

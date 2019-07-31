@@ -1,4 +1,8 @@
-<style/>
+<style>
+    #margin-right {
+        margin-right: 20px;
+    }
+</style>
 
 <template>
     <section class="container">
@@ -29,20 +33,31 @@
         </div>
         <div style="width: auto">
             <header class="modal-card-head">
-                <p class="modal-card-title"><b>Lista de Gastos</b></p>
+                <p class="modal-card-title"><b>{{ this.gastos.length < 2 ? 'Lista de Gasto' : 'Lista de Gastos' }}</b>
+                </p>
+                <b-tooltip label="Atualizar Lista.">
+                    <b-button id="margin-right"
+                              rounded
+                              size="is-medium"
+                              icon-pack="fas"
+                              icon-left="sync"
+                              @click="listarGastos">
+                    </b-button>
+                </b-tooltip>
                 <b-button rounded
                           size="is-medium"
+                          icon-pack="fas"
                           icon-left="plus"
                           @click="formGasto">
                     Adicionar Gasto
                 </b-button>
             </header>
         </div>
-        <b-table hoverable
-                 paginated
-                 :per-page="porPag"
-                 class="row-click"
-                 :data="gastos">
+        <b-table
+                hoverable
+                paginated
+                class="row-click"
+                :data="gastos">
             <template slot-scope="props">
                 <b-table-column label="#" sortable>
                     <small>{{ props.index + 1 }}</small>
@@ -72,6 +87,14 @@
                 <b-table-column field="necessario" label="Necessário" sortable>
                     {{ props.row.necessario ? "Sim" : "Não" }}
                 </b-table-column>
+
+                <b-table-column label="">
+                    <b-tooltip label="Editar Gasto">
+                        <b-button size="is-small" @click.native="formGasto(props.row)">
+                            <b-icon size="is-small" icon="pencil-alt"/>
+                        </b-button>
+                    </b-tooltip>
+                </b-table-column>
             </template>
         </b-table>
     </section>
@@ -80,8 +103,11 @@
 <script>
     import Constante from '../../../constante'
     import Form from '../spent/Form'
+    import BButton from "buefy/src/components/button/Button";
+    import BTooltip from "buefy/src/components/tooltip/Tooltip";
 
     export default {
+        components: {BTooltip, BButton},
         created() {
             this.listarGastos()
             this.listarResumo()
@@ -90,8 +116,7 @@
             return {
                 gastos: [],
                 gastosResumo: [],
-                valorTotal: null,
-                porPag: 15
+                valorTotal: null
             }
         },
         methods: {
@@ -105,11 +130,12 @@
                     this.gastosResumo = res.data
                 })
             },
-            formGasto() {
+            formGasto(gasto) {
                 this.$modal.open({
                     component: Form,
                     width: 600,
                     canCancel: true,
+                    props: {gasto, store: this.$store}
                 }).$on('close', () => {
                     this.listarGastos()
                     this.listarResumo()

@@ -1,9 +1,12 @@
 <style scoped>
+    .redondo {
+        border-radius: 100%;
+    }
 </style>
 
 <template>
     <b-tooltip :label="nome" type="is-info">
-        <img class="img-circle" :src="link" width="60"/>
+        <img class="img-circle redondo" :src="link" width="60"/>
     </b-tooltip>
 </template>
 

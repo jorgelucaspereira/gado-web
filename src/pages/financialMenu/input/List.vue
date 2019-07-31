@@ -26,6 +26,7 @@
                 <b-button rounded
                           size="is-medium"
                           icon-left="plus"
+                          icon-pack="fas"
                           @click="formGasto">
                     Adicionar Entrada
                 </b-button>
@@ -33,7 +34,6 @@
         </div>
         <b-table hoverable
                  paginated
-                 :per-page="porPag"
                  class="row-click"
                  :data="entradas">
             <template slot-scope="props">
@@ -82,8 +82,7 @@
         data() {
             return {
                 entradas: [],
-                entradasResumo: [],
-                porPag: 15
+                entradasResumo: []
             }
         },
         methods: {

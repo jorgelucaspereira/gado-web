@@ -14,9 +14,11 @@
 
 <template>
     <div class="navbar-start" id="margin-top">
-        <a class="navbar-item">
-            <img src="https://i.imgur.com/ttoLziN.png">
-        </a>
+        <router-link class="navbar-item" to="/home">
+            <a class="navbar-item">
+                <img src="https://i.imgur.com/ttoLziN.png">
+            </a>
+        </router-link>
 
         <router-link class="navbar-item" to="/tabs-financial">
             <b-icon id="margin-right" icon="funnel-dollar" class="m-r-xs"/>

@@ -25,6 +25,7 @@
                 <b-button rounded
                           size="is-medium"
                           icon-left="plus"
+                          icon-pack="fas"
                           @click="formSaida">
                     Adicionar Saída
                 </b-button>
@@ -32,7 +33,6 @@
         </div>
         <b-table hoverable
                  paginated
-                 :per-page="porPag"
                  class="row-click"
                  :data="saidas">
             <template slot-scope="props">
